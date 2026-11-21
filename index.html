@@ -1,49 +1,64 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dengu Tracker</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Dengue Tracker</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <main>
+    <h1>Dengue Tracker</h1>
+    <p class="sub">Pick a place to see details</p>
 
-    <div class = "login">
-
-        <div class="logo-section">
-            <div class="logo">###</div>
-            <div>
-                <h2>Dengu Helpline</h2>
-                <p>Track dengu details in your area</p>
-            </div>
-        </div>
-
-        <h1>Welcome back</h1>
-
-        <div id="message" class="message"></div>
-
-        <form id="login-form">
-
-            <div class="input-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" required>
-            </div>
-
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" required>
-            </div>
-
-            <a href="#">Forgot password?</a><br>
-
-            <button type="submit" class="login-btn">Log in</button>
-            <button type="button" class="create-acc-btn">Create Account</button>
-
-        </form>
-
+    <div class="controls">
+      <label>Ward
+        <select id="ward"></select>
+      </label>
+      <label>Week
+        <select id="week"></select>
+      </label>
     </div>
 
-    <script src="script.js"></script>
+    <section class="card" id="result" aria-live="polite">
+      <div class="top">
+        <span id="tier" class="badge">-</span>
+        <div>
+          <div class="big" id="cases">-</div>
+          <div class="muted">expected cases</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Why this risk?</h2>
+      <p class="muted">Bars to the right push risk up, to the left push it down (compared with an average ward-week).</p>
+      <div id="drivers"></div>
+    </section>
+
+    <section class="card">
+      <h2>Weather in the past weeks</h2>
+      <table>
+        <thead><tr><th>When</th><th>Rain (mm)</th><th>Temp (°C)</th><th>Humidity (%)</th></tr></thead>
+        <tbody id="history"></tbody>
+      </table>
+      <p class="muted" id="ward-info"></p>
+    </section>
+
+    <section class="card">
+      <h2>What actually happened</h2>
+      <p class="muted">Real reported cases for this ward, to compare with the prediction.</p>
+      <table>
+        <thead><tr><th>Week</th><th>Cases</th></tr></thead>
+        <tbody id="actual"></tbody>
+      </table>
+    </section>
+
+    <footer class="muted" id="footer"></footer>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
